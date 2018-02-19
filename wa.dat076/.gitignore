@@ -1,0 +1,26 @@
+# Emacs temp files
+\#*
+.\#*
+
+# Vim temp files
+*~
+*.swp
+
+# Log-files
+*.log
+
+/dist
+/node_modules
+/bower_components
+
+# Config files
+/src/config/config.yml
+
+/.idea
+
+.DS_Store
+
+/storage
+
+/*.lock
+/package-lock.json
