@@ -1,13 +1,13 @@
 var path = require('path');
 var webpack = require('webpack');
 
-module.exports = {
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var CleanPlugin       = require('clean-webpack-plugin');
+var appEnv = process.env.NODE_ENV || 'development';
+
+var config = {
   devtool: 'eval',
-  entry: [
-    'webpack/hot/dev-server',
-    'webpack-hot-middleware/client',
-    './src/client/index.js'
-  ],
+  entry: './src/client/bootstrap.js',
   output: {
     path: './dist/public',
     publicPath: '/',
@@ -17,7 +17,7 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin()
   ],
   resolve: {
-    extensions: ['', '.js']
+    extensions: ['.js']
   },
   module: {
     loaders:[
@@ -54,5 +54,25 @@ module.exports = {
         loader: "json-loader"
       }
     ]
+  },
+
+  // webpack dev server configuration
+  devServer: {
+    contentBase: "./src",
+    noInfo: false,
+    hot: false
   }
 };
+
+if (appEnv === 'development') {
+  config.devtool = '#inline-source-map';
+}
+
+if (appEnv === 'production') {
+  config.plugins.push(
+    // Remove build related folders
+    new CleanPlugin(['dist'])
+  );
+}
+
+module.exports = config;
