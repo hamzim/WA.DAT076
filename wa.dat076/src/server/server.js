@@ -11,24 +11,13 @@ import session from 'express-session';
 import Webpack from './webpack';
 
 // Routes
-// import imageRouter from './routes/image-api';
+//    Create a new route file to add!
+import authRouter from './routes/auth-api';
 
 // mongoose.promise = global.Promise;
 // mongoose.connect(`mongodb://${config.database.host}/${config.database.name}`);
 
 const app = express();
-
-//const RedisStore = connectRedis(session);
-//const sessionMiddleware = session({
-//  store: new RedisStore({
-//    host: config.redis.host,
-//    port: 6379
-//  }),
-//  secret: config.session.secret,
-//  resave: false,
-//  saveUninitialized: false,
-//  name: 'dfotose.session'
-//});
 
 if (process.env.NODE_ENV !== "production") {
   Webpack(app);
@@ -44,14 +33,13 @@ app.use(modRewrite([
 app.use('/', express.static(__dirname + '/public'));
 
 app.use(morgan('dev'));
-// app.use(sessionMiddleware);
 
-// Include all routes
+// This will be the base-point for all api-calls! They're
+// all prefixed with a version number.
 const baseUrl = '/v1';
 
-app.get('/v1/foo', (req, res) => {
-  res.send('bar');
-});
+// Include the routers route, and prefix them with v1
+app.use(baseUrl, authRouter);
 
 app.listen(8888, () => {
   console.log(`Listening localhost:8888`);
