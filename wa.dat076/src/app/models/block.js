@@ -7,7 +7,8 @@ printReq = util.printReq;
 var blockSchema = new Schema({
     name: {
         type: String,
-        required: [true, printReq('name', 'Block')]
+        required: [true, printReq('name', 'Block')],
+        index: {unique: true}
     },
     slots: [{
         type: ObjectId,

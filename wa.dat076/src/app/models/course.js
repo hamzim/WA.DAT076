@@ -6,7 +6,8 @@ printReq = util.printReq;
 var courseSchema = new Schema({
     code : {
         type: String,
-        required: [true, printReq('code', 'Course')]
+        required: [true, printReq('code', 'Course')],
+        index: {unique: true}
     },
     name : {
         type: String,

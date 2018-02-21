@@ -5,6 +5,10 @@ var Schema = mongoose.Schema, ObjectId = Schema.ObjectId;
 printReq = util.printReq;
 
 var roomSchema = new Schema({
+	name: {
+        type: String,
+        required: [true, printReq('name', 'Room')]
+    },
     building : {
         type: ObjectId, 
         ref: 'Building', 
@@ -15,6 +19,8 @@ var roomSchema = new Schema({
         required: [true, printReq('seats', 'Room')]
     }
 })
+
+roomSchema.index({name: 1, building: 1}, {unique: true});
 
 var Room = mongoose.model('Room', roomSchema);
 

@@ -4,6 +4,11 @@ var Schema = mongoose.Schema, ObjectId = Schema.ObjectId;
 printReq = util.printReq;
 
 var institutionSchema = new Schema({
+    name: {
+        type: String,
+        required: [true, printReq('name', 'Institution')],
+        index: {unique: true}
+    },
     head: {
         type: ObjectId, 
         ref: 'Employee',

@@ -5,9 +5,10 @@ var Schema = mongoose.Schema, ObjectId = Schema.ObjectId;
 printReq = util.printReq;
 
 var buildingSchema = new Schema({
-    name : {
-        type: String, 
-        required: [true, printReq('name', 'Building')]
+    name: {
+        type: String,
+        required: [true, printReq('name', 'Building')],
+        index: {unique: true}
     },
     adress : {
         type: String, 

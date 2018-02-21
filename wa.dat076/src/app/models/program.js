@@ -9,9 +9,10 @@ var programSchema = new Schema({
         ref: 'Institution',
         required: [true, printReq('institution', 'Program')]
     },
-    name : {
+    name: {
         type: String,
-        required: [true, printReq('name', 'Program')]
+        required: [true, printReq('name', 'Program')],
+        index: {unique: true}
     },
     acronynm : {
         type: String,
