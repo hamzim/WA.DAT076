@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
   `
 })
 
-export default class App {
+export default class Login {
   constructor() {
     this.what = "wellwell.. bindings work.";
   }

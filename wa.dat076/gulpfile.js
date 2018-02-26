@@ -30,7 +30,7 @@ gulp.task('watch', function() {
 });
 
 gulp.task('client:copy', function() {
-  gulp.src('./src/client/index.html')
+  gulp.src('./src/client/*')
     .pipe(gulp.dest(path.OUT_DIR + 'public'));
 
   gulp.src('./src/client/assets/**/*')
