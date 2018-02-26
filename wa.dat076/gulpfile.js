@@ -14,7 +14,6 @@ var child = require('child_process');
 
 var path = {
   SRV_SRC: ['src/server/**/*', '!*~'],
-
   OUT_DIR: 'dist/'
 };
 
@@ -24,6 +23,10 @@ gulp.task('default', gulpSequence(['server:build', 'client:copy', 'server:spawn'
 
 gulp.task('watch', function() {
   gulp.watch(path.SRV_SRC, ['server:rebuild']);
+});
+gulp.task('watch', function() {
+  gulp.watch(path.SRV_SRC, ['server:rebuild']);
+  gulp.watch('src/client/*', ['client:copy']);
 });
 
 gulp.task('client:copy', function() {
