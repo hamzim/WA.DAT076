@@ -3,6 +3,8 @@ import express from 'express'
 import modRewrite from 'connect-modrewrite';
 import helmet from 'helmet';
 
+import mime from 'mime-types';
+
 import morgan from 'morgan';
 
 import session from 'express-session';
